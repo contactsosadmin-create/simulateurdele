@@ -10,32 +10,52 @@
         * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: var(--es-light); color: var(--es-dark); margin: 0; padding: 15px; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-image: linear-gradient(135deg, rgba(170,21,27,0.03) 0%, rgba(241,191,0,0.03) 100%); }
         .dele-container { background: white; border-top: 6px solid var(--es-red); border-radius: 4px; box-shadow: 0 10px 25px rgba(170,21,27,0.05); width: 100%; max-width: 680px; padding: 35px; margin: 20px auto; position: relative; }
+        .dele-container::after { content: ""; position: absolute; top: -6px; right: 0; width: 50%; height: 6px; background: var(--es-gold); }
         .header { text-align: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 20px; margin-bottom: 25px; }
         .title { color: var(--es-dark); margin: 0; font-size: 24px; font-weight: 800; text-transform: uppercase; }
         .subtitle { color: var(--es-red); margin: 5px 0 0 0; font-size: 13px; font-weight: 700; text-transform: uppercase; }
         .badge { background: #FEF3C7; color: #92400E; padding: 5px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; display: inline-block; }
         .timer { font-size: 18px; font-weight: 800; color: var(--es-dark); text-align: right; }
+        .timer.urgent { color: var(--es-red); animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
         .question { font-size: 18px; font-weight: 600; margin-bottom: 25px; line-height: 1.6; }
         .options { display: flex; flex-direction: column; gap: 12px; }
         .option-btn { background: white; border: 1px solid #CBD5E1; border-radius: 4px; padding: 14px 18px; text-align: left; font-size: 15px; cursor: pointer; width: 100%; color: var(--es-dark); display: flex; align-items: center; }
-        .option-btn.selected { border-color: var(--es-red); background: #FEF2F2; font-weight: 700; }
+        .option-btn:hover { border-color: var(--es-red); background: #F8FAFC; }
+        .option-btn.selected { border-color: var(--es-red); background: #FEF2F2; font-weight: 700; box-shadow: 0 0 0 1px var(--es-red); }
         .nav-btns { display: flex; justify-content: space-between; margin-top: 35px; border-top: 1px solid #E2E8F0; padding-top: 20px; }
         .btn { background: var(--es-red); color: white; border: none; border-radius: 4px; padding: 12px 26px; font-size: 15px; cursor: pointer; font-weight: 700; }
+        .btn:hover { background: #800F13; }
+        .btn:disabled { background: #E2E8F0; color: var(--es-gray); cursor: not-allowed; }
         .btn-secondary { background: transparent; color: var(--es-red); border: 1px solid var(--es-red); }
+        .btn-secondary:hover { background: #FEF2F2; }
         .hidden { display: none !important; }
         .score { font-size: 54px; font-weight: 900; color: var(--es-red); margin: 20px 0 10px 0; }
         .level { font-size: 22px; font-weight: 800; color: var(--success); margin-bottom: 30px; text-transform: uppercase; }
+        .review-item { border-left: 4px solid #CBD5E1; padding-left: 15px; margin-bottom: 20px; text-align: left; background: #F8FAFC; padding: 15px; border-radius: 0 4px 4px 0; }
+        .review-item.correct { border-color: var(--success); }
+        .review-item.incorrect { border-color: var(--es-red); }
+        .explanation { font-size: 13.5px; color: var(--es-gray); margin-top: 8px; font-style: italic; line-height: 1.4; border-top: 1px dashed #E2E8F0; padding-top: 8px; }
         .progress-bar { background: #E2E8F0; border-radius: 4px; height: 6px; width: 100%; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { background: linear-gradient(90deg, var(--es-red), var(--es-gold)); height: 100%; width: 0%; }
+        .progress-fill { background: linear-gradient(90deg, var(--es-red), var(--es-gold)); height: 100%; width: 0%; transition: width 0.3s; }
+        ul { padding-left: 20px; line-height: 1.6; color: var(--es-gray); }
+        li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
+
 <div id="start-screen" class="dele-container">
     <div class="header">
-        <h1 class="title">DELE A2 - Preparacion SIELE</h1>
-        <p class="subtitle">EDICION 2026</p>
+        <h1 class="title">DELE A2 · Preparación SIELE</h1>
+        <p class="subtitle">Preparación lingüística — EDICIÓN 2026</p>
     </div>
-    <p>Simulador de 25 preguntas y 20 minutos de límite inspirado en el nivel A2 del MCER.</p>
+    <p style="font-weight: 700; color: var(--es-red); font-size: 16px; margin-bottom: 5px;">Tu español, a prueba.</p>
+    <p style="margin-top: 0;">Una práctica concentrada para llegar al examen con ritmo, criterio y confianza. Comprueba tu nivel antes del día del examen. Entrena gramática, vocabulario y situaciones cotidianas con una prueba inspirada en el nivel A2 del MCER.</p>
+    <ul>
+        <li><strong>25 preguntas</strong> de opción múltiple</li>
+        <li><strong>20 minutes</strong> de tiempo límite</li>
+        <li><strong>3 opciones</strong> por respuesta</li>
+    </ul>
     <button class="btn" style="width:100%; margin-top:25px; padding: 15px;" onclick="startQuiz()">EMPEZAR SIMULACRO</button>
 </div>
 
@@ -66,16 +86,18 @@
 </div>
 
 <script>
-    // Le code complet du questionnaire avec les 25 questions et la logique globale est inclus et disponible dans le document de référence.
-    let currentIdx = 0;
-    let userAnswers = Array(25).fill(null);
-    function startQuiz() {
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('quiz-screen').classList.remove('hidden');
-    }
-    function restartQuiz() {
-        location.reload();
-    }
-</script>
-</body>
-</html>
+    const questions = [
+        { question: "Hola, ¿cómo ___________? Yo muy bien, gracias.", options: ["estás", "eres", "tienes"], answer: 0, explan: "Se usa el verbo 'estar' para preguntar por la salud o el estado de ánimo (Comment vas-tu ?)." },
+        { question: "Mañana voy ___________ Madrid en tren con mi familia.", options: ["a", "en", "por"], answer: 0, explan: "La preposición 'a' indica dirección o destino con verbos de mouvement como ir (Je vais À Madrid)." },
+        { question: "Mis hermanos ___________ veinticinco y treinta años.", options: ["son", "tienen", "están"], answer: 1, explan: "En español la edad se expresa con el verbo 'tener' (avoir de l'âge)." },
+        { question: "Me gusta mucho ___________ casa, es muy grande y bonita.", options: ["esta", "este", "esto"], answer: 0, explan: "'Casa' es un nombre femenino singular, por lo que exige el demostrativo femenino 'esta'." },
+        { question: "¿Dónde ___________ las llaves del coche? No las encuentro.", options: ["son", "están", "tienen"], answer: 1, explan: "Se utiliza 'estar' para localizar objetos o personas en el espacio (Où sont les clés ?)." },
+        { question: "Ayer ___________ en un restaurante español muy barato.", options: ["cené", "cenaba", "cenar"], answer: 0, explan: "El marcador de tiempo 'Ayer' (Hier) exige el uso del pretérito indefinido para acciones pasadas y terminadas." },
+        { question: "A Juan ___________ duelen mucho los pies de tanto caminar.", options: ["le", "les", "me"], answer: 0, explan: "'Juan' es tercera persona del singular, por lo que el pronombre indirecto correcto para el verbo doler es 'le'." },
+        { question: "Esta falda es más barata ___________ el pantalón vaquero.", options: ["que", "como", "de"], answer: 0, explan: "Para hacer comparaciones de desigualdad (plus... que), se utiliza la estructura 'más + adjetivo + que'." },
+        { question: "Cuando era niño, siempre ___________ al fútbol en el parque.", options: ["jugué", "jugaba", "jugaré"], answer: 1, explan: "Para describir hábitos o costumbres repetidas en el pasado se utiliza el pretérito imperfecto ('jugaba')." },
+        { question: "Por favor, Carmen, ___________ la ventana, hace mucho calor.", options: ["abre", "abras", "abrir"], answer: 0, explan: "Imperativo afirmativo regular para la segunda persona (tú) del verbo abrir : 'abre'." },
+        { question: "He comprado un regalo ___________ mi madre por su cumpleaños.", options: ["para", "por", "de"], answer: 0, explan: "'Para' indica el destinatario de una acción o un objeto (Pour ma mère)." },
+        { question: "Si tengo tiempo esta tarde, ___________ al supermercado.", options: ["iré", "iba", "fuera"], answer: 0, explan: "Estructura condicional real: Si + presente de indicativo ('tengo'), la consecuencia va en futuro simple ('iré')." },
+        { question: "¿Has viajado alguna vez a Barcelona? No, no he ido ___________.", options: ["todavía", "ya", "nunca"], answer: 0, explan: "'No... todavía' significa 'pas encore'. Se usa para acciones que no han pasado pero podrían pasar." },
+        { question: "No creo que Carlos ___________ venir hoy a la fiesta.", options: ["puede", "pueda", "podrá"], answer: 1, explan: "La expresión de duda o negación 'No creo que' exige el uso del presente de subjuntivo ('pueda')." },
