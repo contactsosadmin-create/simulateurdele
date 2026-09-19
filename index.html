@@ -25,7 +25,6 @@
         .option-btn.selected { border-color: var(--es-red); background: #FEF2F2; font-weight: 700; box-shadow: 0 0 0 1px var(--es-red); }
         .nav-btns { display: flex; justify-content: space-between; margin-top: 35px; border-top: 1px solid #E2E8F0; padding-top: 20px; }
         .btn { background: var(--es-red); color: white; border: none; border-radius: 4px; padding: 12px 26px; font-size: 15px; cursor: pointer; font-weight: 700; }
-        .btn:hover { background: #800F13; }
         .btn:disabled { background: #E2E8F0; color: var(--es-gray); cursor: not-allowed; }
         .btn-secondary { background: transparent; color: var(--es-red); border: 1px solid var(--es-red); }
         .btn-secondary:hover { background: #FEF2F2; }
@@ -53,7 +52,7 @@
     <p style="margin-top: 0;">Una práctica concentrada para llegar al examen con ritmo, criterio y confianza. Comprueba tu nivel antes del día del examen. Entrena gramática, vocabulario y situaciones cotidianas con una prueba inspirada en el nivel A2 del MCER.</p>
     <ul>
         <li><strong>25 preguntas</strong> de opción múltiple</li>
-        <li><strong>20 minutes</strong> de tiempo límite</li>
+        <li><strong>20 minutos</strong> de tiempo límite</li>
         <li><strong>3 opciones</strong> por respuesta</li>
     </ul>
     <button class="btn" style="width:100%; margin-top:25px; padding: 15px;" onclick="startQuiz()">EMPEZAR SIMULACRO</button>
@@ -88,7 +87,7 @@
 <script>
     const questions = [
         { question: "Hola, ¿cómo ___________? Yo muy bien, gracias.", options: ["estás", "eres", "tienes"], answer: 0, explan: "Se usa el verbo 'estar' para preguntar por la salud o el estado de ánimo (Comment vas-tu ?)." },
-        { question: "Mañana voy ___________ Madrid en tren con mi familia.", options: ["a", "en", "por"], answer: 0, explan: "La preposición 'a' indica dirección o destino con verbos de mouvement como ir (Je vais À Madrid)." },
+        { question: "Mañana voy ___________ Madrid en tren con mi familia.", options: ["a", "en", "por"], answer: 0, explan: "La preposición 'a' indica dirección o destino con verbos de movimiento como ir (Je vais À Madrid)." },
         { question: "Mis hermanos ___________ veinticinco y treinta años.", options: ["son", "tienen", "están"], answer: 1, explan: "En español la edad se expresa con el verbo 'tener' (avoir de l'âge)." },
         { question: "Me gusta mucho ___________ casa, es muy grande y bonita.", options: ["esta", "este", "esto"], answer: 0, explan: "'Casa' es un nombre femenino singular, por lo que exige el demostrativo femenino 'esta'." },
         { question: "¿Dónde ___________ las llaves del coche? No las encuentro.", options: ["son", "están", "tienen"], answer: 1, explan: "Se utiliza 'estar' para localizar objetos o personas en el espacio (Où sont les clés ?)." },
@@ -99,5 +98,5 @@
         { question: "Por favor, Carmen, ___________ la ventana, hace mucho calor.", options: ["abre", "abras", "abrir"], answer: 0, explan: "Imperativo afirmativo regular para la segunda persona (tú) del verbo abrir : 'abre'." },
         { question: "He comprado un regalo ___________ mi madre por su cumpleaños.", options: ["para", "por", "de"], answer: 0, explan: "'Para' indica el destinatario de una acción o un objeto (Pour ma mère)." },
         { question: "Si tengo tiempo esta tarde, ___________ al supermercado.", options: ["iré", "iba", "fuera"], answer: 0, explan: "Estructura condicional real: Si + presente de indicativo ('tengo'), la consecuencia va en futuro simple ('iré')." },
-        { question: "¿Has viajado alguna vez a Barcelona? No, no he ido ___________.", options: ["todavía", "ya", "nunca"], answer: 0, explan: "'No... todavía' significa 'pas encore'. Se usa para acciones que no han pasado pero podrían pasar." },
+        { question: "¿Has viajado alguna vez a Barcelona? No, no he ido ___________.", options: ["todavía", "ya", "nunca"], answer: 0, explan: "'No... todavía' significa 'pas encore'. Se usa para acciones que no han pasado pero pourraient pasar." },
         { question: "No creo que Carlos ___________ venir hoy a la fiesta.", options: ["puede", "pueda", "podrá"], answer: 1, explan: "La expresión de duda o negación 'No creo que' exige el uso del presente de subjuntivo ('pueda')." },
